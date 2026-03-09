@@ -1,0 +1,961 @@
+<!DOCTYPE html>
+<html lang="es" data-lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Verónica Mlinarevic — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Mono:ital,wght@0,400;0,500;1,400&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#090909;--bg2:#101012;--bg3:#161618;--border:#222226;
+  --lime:#c8f55a;--teal:#5af5c8;--red:#f55a7a;
+  --text:#e8e8e8;--muted:#666;--subtle:#333;
+  --fd:'Syne',sans-serif;--fb:'Instrument Sans',sans-serif;--fm:'DM Mono',monospace;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--fb);font-size:16px;line-height:1.65;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+::-webkit-scrollbar{width:3px}
+::-webkit-scrollbar-thumb{background:var(--lime);border-radius:2px}
+[data-lang="es"] .en{display:none}
+[data-lang="en"] .es{display:none}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:18px 40px;background:rgba(9,9,9,.92);backdrop-filter:blur(14px);border-bottom:1px solid var(--border)}
+.nav-logo{font-family:var(--fd);font-size:13px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--lime)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);transition:color .2s}
+.nav-links a:hover{color:var(--text)}
+.nav-resumo{font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--bg)!important;background:var(--lime);padding:7px 16px;border-radius:3px;font-family:var(--fm);transition:all .2s;border:1px solid var(--lime)}
+.nav-resumo:hover{background:transparent!important;color:var(--lime)!important}
+.lang-toggle{display:flex;border:1px solid var(--border);border-radius:4px;overflow:hidden;margin-left:8px}
+.lang-btn{padding:6px 11px;font-size:11px;font-weight:700;cursor:pointer;background:transparent;border:none;color:var(--muted);font-family:var(--fm);transition:all .2s}
+.lang-btn.active{background:var(--lime);color:var(--bg)}
+
+/* HERO */
+#hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;padding-top:80px;position:relative;overflow:hidden}
+#hero::after{content:'';position:absolute;top:0;right:0;width:50%;height:100%;background:var(--bg2);clip-path:polygon(8% 0,100% 0,100% 100%,0% 100%);z-index:0}
+.hero-left{position:relative;z-index:1;padding:80px 60px;display:flex;flex-direction:column;justify-content:center}
+.hero-eyebrow{font-family:var(--fm);font-size:11px;color:var(--lime);letter-spacing:.2em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:12px}
+.hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--lime)}
+.hero-name{font-family:var(--fd);font-size:clamp(44px,6vw,86px);font-weight:800;line-height:.95;letter-spacing:-.03em;color:var(--text);margin-bottom:28px}
+.hero-name span{display:block;color:var(--lime)}
+.hero-message{background:rgba(200,245,90,.05);border:1px solid rgba(200,245,90,.18);border-left:3px solid var(--lime);border-radius:4px;padding:20px 24px;margin-bottom:36px;max-width:480px}
+.hero-message p{font-size:15px;color:#aaa;line-height:1.7}
+.hero-message strong{color:var(--text);font-weight:600}
+.ai-note{font-size:13px;color:var(--muted);font-family:var(--fm);margin-top:10px;font-style:italic}
+.hero-cta{display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{display:inline-flex;align-items:center;gap:8px;background:var(--lime);color:var(--bg);padding:14px 28px;border-radius:3px;font-weight:700;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border:2px solid var(--lime);transition:all .25s}
+.btn-primary:hover{background:transparent;color:var(--lime)}
+.btn-ghost{display:inline-flex;align-items:center;gap:8px;background:transparent;color:var(--text);padding:14px 28px;border-radius:3px;font-weight:600;font-size:13px;letter-spacing:.08em;text-transform:uppercase;border:2px solid var(--border);transition:all .25s}
+.btn-ghost:hover{border-color:var(--text)}
+.hero-stats{display:flex;gap:40px;margin-top:56px;padding-top:36px;border-top:1px solid var(--border);flex-wrap:wrap}
+.stat-num{font-family:var(--fd);font-size:36px;font-weight:800;color:var(--lime);line-height:1;margin-bottom:4px}
+.stat-label{font-size:12px;color:var(--muted);letter-spacing:.08em;text-transform:uppercase;font-family:var(--fm)}
+.hero-right{position:relative;z-index:1;display:flex;align-items:center;justify-content:center;padding:80px 60px}
+.photo-frame{position:relative;width:300px;height:380px}
+.photo-frame::before{content:'';position:absolute;top:-12px;left:-12px;width:100%;height:100%;border:2px solid var(--lime);border-radius:4px;z-index:0}
+.photo-frame::after{content:'';position:absolute;bottom:-12px;right:-12px;width:100%;height:100%;border:1px solid var(--teal);border-radius:4px;z-index:0}
+.photo-inner{position:relative;z-index:1;width:100%;height:100%;background:var(--bg3);border-radius:4px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:12px;border:1px solid var(--border);cursor:pointer}
+.photo-inner img{width:100%;height:100%;object-fit:cover}
+.photo-placeholder-icon{font-size:48px;opacity:.2}
+.photo-placeholder-text{font-size:11px;color:var(--muted);letter-spacing:.15em;text-transform:uppercase;font-family:var(--fm)}
+.location-badge{position:absolute;bottom:-20px;left:-20px;background:var(--teal);color:var(--bg);padding:10px 16px;border-radius:3px;font-size:12px;font-weight:700;font-family:var(--fm);z-index:2}
+
+/* SECTIONS */
+section{padding:100px 60px;max-width:1200px;margin:0 auto}
+.section-label{display:flex;align-items:center;gap:16px;margin-bottom:60px}
+.section-label-text{font-family:var(--fm);font-size:11px;color:var(--lime);letter-spacing:.25em;text-transform:uppercase}
+.section-label-line{flex:1;height:1px;background:var(--border)}
+.section-num{font-family:var(--fm);font-size:11px;color:var(--subtle)}
+.section-title{font-family:var(--fd);font-size:clamp(32px,4vw,52px);font-weight:800;letter-spacing:-.02em;line-height:1;margin-bottom:16px}
+.section-sub{font-size:17px;color:var(--muted);max-width:560px;line-height:1.7;margin-bottom:60px}
+
+/* ABOUT */
+#about{background:var(--bg2);max-width:100%;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:80px 60px}
+.about-inner{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:80px;align-items:start}
+.about-big{font-family:var(--fd);font-size:clamp(44px,5.5vw,76px);font-weight:800;line-height:.9;letter-spacing:-.04em;color:var(--lime)}
+.about-text{font-size:17px;line-height:1.8;color:#aaa;margin-bottom:16px}
+.about-text strong{color:var(--text);font-weight:600}
+.ai-box{background:var(--bg3);border:1px solid var(--border);border-left:3px solid var(--teal);border-radius:4px;padding:18px 22px;margin:16px 0 24px}
+.ai-box p{font-size:15px;color:#888;line-height:1.7;font-style:italic}
+.ai-box strong{color:var(--teal);font-style:normal}
+
+/* CASES */
+.case-grid{display:grid;gap:2px}
+.case-card{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:48px;display:grid;grid-template-columns:1fr 2fr;gap:60px;align-items:start;transition:border-color .3s,background .3s;position:relative;overflow:hidden}
+.case-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--lime);opacity:0;transition:opacity .3s}
+.case-card:hover{border-color:rgba(200,245,90,.3);background:var(--bg3)}
+.case-card:hover::before{opacity:1}
+.case-card:nth-child(2)::before{background:var(--teal)}
+.case-card:nth-child(3)::before{background:var(--red)}
+.case-num{font-family:var(--fm);font-size:11px;color:var(--muted);letter-spacing:.15em;margin-bottom:16px}
+.case-org{font-size:13px;font-weight:600;color:var(--lime);letter-spacing:.05em;text-transform:uppercase;margin-bottom:4px;font-family:var(--fm)}
+.case-card:nth-child(2) .case-org{color:var(--teal)}
+.case-card:nth-child(3) .case-org{color:var(--red)}
+.case-period{font-size:13px;color:var(--muted);margin-bottom:24px;font-family:var(--fm)}
+.case-img-placeholder{width:100%;aspect-ratio:16/9;background:var(--bg3);border:1px dashed var(--border);border-radius:3px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;cursor:pointer;transition:border-color .2s}
+.case-img-placeholder:hover{border-color:var(--lime)}
+.placeholder-text{font-size:11px;color:var(--subtle);font-family:var(--fm);letter-spacing:.1em}
+.case-title{font-family:var(--fd);font-size:26px;font-weight:800;line-height:1.1;letter-spacing:-.02em;margin-bottom:8px}
+.case-role{font-size:13px;color:var(--muted);font-family:var(--fm);margin-bottom:12px;letter-spacing:.08em}
+.case-ai-note{display:inline-flex;align-items:center;gap:8px;background:rgba(90,245,200,.06);border:1px solid rgba(90,245,200,.15);border-radius:3px;padding:8px 14px;font-size:12px;color:var(--teal);font-family:var(--fm);margin-bottom:16px}
+.case-desc{font-size:15px;color:#999;line-height:1.75;margin-bottom:20px}
+.case-achievements{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.case-achievements li{font-size:14px;color:var(--text);padding-left:20px;position:relative;line-height:1.5}
+.case-achievements li::before{content:'→';position:absolute;left:0;color:var(--lime);font-family:var(--fm)}
+.case-card:nth-child(2) .case-achievements li::before{color:var(--teal)}
+.case-card:nth-child(3) .case-achievements li::before{color:var(--red)}
+.case-tags{display:flex;flex-wrap:wrap;gap:6px}
+.case-tag{display:inline-block;font-size:12px;padding:4px 10px;border-radius:2px;font-family:var(--fm)}
+.ct-lime{background:rgba(200,245,90,.08);border:1px solid rgba(200,245,90,.2);color:var(--lime)}
+.ct-teal{background:rgba(90,245,200,.06);border:1px solid rgba(90,245,200,.18);color:var(--teal)}
+.ct-muted{background:var(--bg3);border:1px solid var(--border);color:#777}
+
+/* ══════════════════════
+   SKILLS — TAG SYSTEM
+══════════════════════ */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.skill-group{background:var(--bg2);border:1px solid var(--border);border-radius:4px;padding:28px 24px;transition:border-color .3s}
+.skill-group:hover{border-color:rgba(200,245,90,.2)}
+.skill-group-label{font-family:var(--fm);font-size:10px;color:var(--lime);letter-spacing:.2em;text-transform:uppercase;margin-bottom:18px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+.tag-cloud{display:flex;flex-wrap:wrap;gap:8px}
+
+/* BASE TAG */
+.stag{display:inline-flex;align-items:center;gap:6px;font-size:12px;padding:6px 11px;border-radius:3px;font-family:var(--fm);letter-spacing:.04em;transition:all .25s;position:relative;user-select:none}
+
+/* TAG sin evidencia — presente, igual, sin invitación */
+.stag-plain{background:var(--bg3);border:1px solid var(--border);color:#888}
+.stag-plain:hover{border-color:#444;color:#aaa}
+
+/* TAG con evidencia — latido con intención */
+.stag-ev{
+  background:rgba(200,245,90,.07);
+  border:1px solid rgba(200,245,90,.28);
+  color:var(--lime);
+  cursor:pointer;
+  animation:pulse-halo 2.6s ease-in-out infinite;
+}
+.stag-ev:hover{
+  background:rgba(200,245,90,.15);
+  border-color:rgba(200,245,90,.6);
+  transform:scale(1.05);
+  animation:pulse-halo-fast 1s ease-in-out infinite;
+}
+.stag-ev:hover .tag-chev{transform:translateX(3px)}
+.stag-ev.open .tag-chev{transform:rotate(90deg)}
+.stag-ev.open{animation:halo-explode .4s ease-out forwards}
+
+/* CHEVRON */
+.tag-chev{font-style:normal;font-size:13px;transition:transform .35s cubic-bezier(.34,1.56,.64,1);display:inline-block;line-height:1;color:rgba(200,245,90,.65);font-family:var(--fm)}
+
+/* PULSE KEYFRAMES */
+@keyframes pulse-halo{
+  0%,100%{box-shadow:0 0 0 0 rgba(200,245,90,.4),0 0 8px 0 rgba(200,245,90,.08)}
+  50%{box-shadow:0 0 0 6px rgba(200,245,90,.0),0 0 16px 4px rgba(200,245,90,.16)}
+}
+@keyframes pulse-halo-fast{
+  0%,100%{box-shadow:0 0 0 0 rgba(200,245,90,.55),0 0 10px 0 rgba(200,245,90,.15)}
+  50%{box-shadow:0 0 0 8px rgba(200,245,90,.0),0 0 22px 6px rgba(200,245,90,.28)}
+}
+@keyframes halo-explode{
+  0%{box-shadow:0 0 0 0 rgba(200,245,90,.9)}
+  100%{box-shadow:0 0 0 24px rgba(200,245,90,.0)}
+}
+
+/* LEGEND */
+.skills-legend{display:flex;align-items:center;gap:28px;margin-bottom:36px;flex-wrap:wrap;padding:14px 20px;background:var(--bg2);border:1px solid var(--border);border-radius:4px}
+.legend-item{display:flex;align-items:center;gap:9px;font-size:12px;color:var(--muted);font-family:var(--fm)}
+.legend-dot-ev{width:9px;height:9px;border-radius:50%;background:var(--lime);box-shadow:0 0 8px rgba(200,245,90,.7);animation:pulse-halo 2.6s ease-in-out infinite;flex-shrink:0}
+.legend-dot-plain{width:9px;height:9px;border-radius:50%;background:var(--subtle);border:1px solid var(--border);flex-shrink:0}
+
+/* AI BANNER */
+.ai-banner{background:linear-gradient(135deg,rgba(90,245,200,.06) 0%,rgba(200,245,90,.04) 100%);border:1px solid rgba(90,245,200,.15);border-radius:6px;padding:36px 44px;margin-top:40px;display:grid;grid-template-columns:auto 1fr;gap:28px;align-items:center}
+.ai-banner-icon{font-size:44px;line-height:1}
+.ai-banner-title{font-family:var(--fd);font-size:20px;font-weight:800;color:var(--text);margin-bottom:8px;letter-spacing:-.01em}
+.ai-banner-title span{color:var(--teal)}
+.ai-banner-desc{font-size:15px;color:#888;line-height:1.7}
+.ai-banner-desc strong{color:#bbb;font-weight:600}
+
+/* CERTS */
+#certifications{background:var(--bg2);max-width:100%;border-top:1px solid var(--border);padding:100px 60px}
+.cert-inner{max-width:1200px;margin:0 auto}
+.cert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+.cert-card{background:var(--bg3);border:1px solid var(--border);border-radius:4px;padding:24px;text-align:center;transition:all .3s;cursor:pointer;position:relative;overflow:hidden}
+.cert-card:hover{border-color:rgba(200,245,90,.3);transform:translateY(-4px)}
+.cert-icon{font-size:32px;margin-bottom:12px}
+.cert-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.3}
+.cert-issuer{font-size:11px;color:var(--muted);font-family:var(--fm)}
+.cert-badge{display:inline-block;font-size:10px;font-weight:700;padding:2px 8px;border-radius:20px;margin-top:10px;font-family:var(--fm);background:rgba(200,245,90,.08);border:1px solid rgba(200,245,90,.2);color:var(--lime)}
+.cert-upload-label{font-size:10px;color:var(--subtle);font-family:var(--fm);margin-top:8px;letter-spacing:.1em;display:block}
+.cert-preview{display:none;position:absolute;inset:0;background:var(--bg3);border-radius:4px;overflow:hidden}
+.cert-preview img{width:100%;height:100%;object-fit:contain}
+.cert-preview-close{position:absolute;top:8px;right:8px;background:var(--lime);color:var(--bg);border:none;border-radius:2px;width:24px;height:24px;font-size:14px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:700;z-index:2}
+
+/* TIMELINE */
+.timeline{position:relative;padding-left:40px}
+.timeline::before{content:'';position:absolute;left:0;top:8px;bottom:0;width:1px;background:var(--border)}
+.timeline-item{position:relative;padding-bottom:44px}
+.timeline-item:last-child{padding-bottom:0}
+.timeline-dot{position:absolute;left:-44px;top:6px;width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 4px var(--bg)}
+.timeline-header{display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:6px;gap:20px}
+.timeline-title{font-family:var(--fd);font-size:18px;font-weight:700;color:var(--text)}
+.timeline-period{font-family:var(--fm);font-size:11px;color:var(--lime);background:rgba(200,245,90,.07);border:1px solid rgba(200,245,90,.2);padding:3px 10px;border-radius:20px;white-space:nowrap}
+.timeline-company{font-size:13px;color:var(--muted);margin-bottom:10px;font-family:var(--fm)}
+.timeline-desc{font-size:14px;color:#888;line-height:1.65;margin-bottom:8px}
+.timeline-ach{font-size:13px;color:var(--teal);padding-left:16px;border-left:2px solid var(--teal);line-height:1.6;font-style:italic}
+
+/* CONTACT */
+#contact{background:var(--bg);text-align:center;padding:120px 60px;max-width:100%;border-top:1px solid var(--border);position:relative;overflow:hidden}
+#contact::before{content:'CONTACT';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:var(--fd);font-size:clamp(80px,18vw,220px);font-weight:800;color:rgba(200,245,90,.025);pointer-events:none;white-space:nowrap;letter-spacing:-.05em}
+.contact-inner{max-width:680px;margin:0 auto;position:relative;z-index:1}
+.contact-title{font-family:var(--fd);font-size:clamp(36px,5vw,68px);font-weight:800;letter-spacing:-.03em;line-height:1;margin-bottom:20px}
+.contact-sub{font-size:17px;color:var(--muted);margin-bottom:48px;line-height:1.7}
+.contact-form{display:flex;flex-direction:column;gap:16px;text-align:left;margin-bottom:40px}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-field{display:flex;flex-direction:column;gap:6px}
+.form-field label{font-size:11px;color:var(--muted);letter-spacing:.12em;text-transform:uppercase;font-family:var(--fm)}
+.form-field input,.form-field textarea{background:var(--bg2);border:1px solid var(--border);border-radius:3px;padding:12px 16px;color:var(--text);font-family:var(--fb);font-size:14px;transition:border-color .2s;resize:none}
+.form-field input:focus,.form-field textarea:focus{outline:none;border-color:var(--lime)}
+.form-field textarea{min-height:120px}
+.form-submit{align-self:flex-start;background:var(--lime);color:var(--bg);border:none;padding:14px 36px;border-radius:3px;font-weight:700;font-size:13px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer;font-family:var(--fd);transition:all .2s}
+.form-submit:hover{background:#d4f87a}
+.contact-links{display:flex;justify-content:center;gap:20px;flex-wrap:wrap}
+.contact-link{display:flex;align-items:center;gap:10px;padding:13px 22px;border:1px solid var(--border);border-radius:3px;font-size:13px;font-weight:600;color:var(--muted);transition:all .25s;letter-spacing:.05em}
+.contact-link:hover{border-color:var(--lime);color:var(--lime)}
+.contact-link svg{width:17px;height:17px;flex-shrink:0}
+
+/* FOOTER */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:24px 60px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-logo{font-family:var(--fd);font-size:14px;font-weight:800;color:var(--lime);letter-spacing:.1em}
+.footer-claude{font-size:11px;color:var(--muted);font-family:var(--fm);display:flex;align-items:center;gap:6px}
+.footer-claude a{color:var(--teal);text-decoration:underline;text-underline-offset:3px}
+.footer-copy{font-size:12px;color:var(--subtle);font-family:var(--fm)}
+
+/* ══════════════════════════════════
+   EVIDENCE DIRECTORY — light layer
+══════════════════════════════════ */
+.dir-overlay{
+  position:fixed;inset:0;z-index:500;
+  background:rgba(9,9,9,.65);
+  backdrop-filter:blur(10px);
+  display:none;align-items:flex-end;justify-content:center;
+  opacity:0;transition:opacity .35s;
+}
+.dir-overlay.open{display:flex;opacity:1}
+
+.dir-panel{
+  width:100%;max-width:920px;max-height:88vh;
+  background:#f7f7f5;
+  border-radius:12px 12px 0 0;
+  overflow:hidden;
+  transform:translateY(60px);
+  transition:transform .42s cubic-bezier(.22,1,.36,1);
+  display:flex;flex-direction:column;
+  box-shadow:0 -20px 60px rgba(0,0,0,.5);
+}
+.dir-overlay.open .dir-panel{transform:translateY(0)}
+
+/* DIR HEADER — dark */
+.dir-header{background:#111113;padding:22px 28px;display:flex;align-items:center;justify-content:space-between;flex-shrink:0;border-bottom:2px solid rgba(200,245,90,.2)}
+.dir-header-left{display:flex;flex-direction:column;gap:4px}
+.dir-skill-label{font-family:'DM Mono',monospace;font-size:9px;color:rgba(200,245,90,.6);letter-spacing:.25em;text-transform:uppercase}
+.dir-title{font-family:'Syne',sans-serif;font-size:20px;font-weight:800;color:#fff;letter-spacing:-.01em}
+.dir-close{background:rgba(200,245,90,.1);border:1px solid rgba(200,245,90,.25);color:#c8f55a;width:36px;height:36px;border-radius:3px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:18px;transition:all .2s;font-family:'DM Mono',monospace}
+.dir-close:hover{background:#c8f55a;color:#111}
+
+/* DIR BODY — light */
+.dir-body{padding:28px;overflow-y:auto;flex:1;background:#f7f7f5}
+.dir-intro{font-size:12px;color:#999;font-family:'DM Mono',monospace;margin-bottom:24px;padding-bottom:16px;border-bottom:1px solid #e0e0dc;letter-spacing:.03em;line-height:1.6}
+.dir-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+
+/* DOC CARD */
+.doc-card{background:#fff;border:1px solid #e0e0dc;border-radius:6px;overflow:hidden;transition:all .25s;cursor:pointer}
+.doc-card:hover{border-color:rgba(200,245,90,.55);box-shadow:0 6px 24px rgba(200,245,90,.14);transform:translateY(-3px)}
+.doc-preview{width:100%;height:128px;background:#f0f0ec;display:flex;align-items:center;justify-content:center;border-bottom:1px solid #e8e8e4;position:relative;overflow:hidden}
+.doc-preview img{width:100%;height:100%;object-fit:cover}
+.doc-preview-placeholder{display:flex;flex-direction:column;align-items:center;gap:6px}
+.doc-preview-icon{font-size:30px;opacity:.35}
+.doc-preview-type{font-family:'DM Mono',monospace;font-size:8px;color:#bbb;letter-spacing:.2em;text-transform:uppercase}
+.doc-info{padding:14px 16px}
+.doc-type-badge{display:inline-block;font-family:'DM Mono',monospace;font-size:9px;font-weight:500;padding:2px 7px;border-radius:2px;letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px}
+.dt-cert{background:rgba(13,158,126,.1);color:#0d9e7e;border:1px solid rgba(13,158,126,.22)}
+.dt-work{background:rgba(200,245,90,.12);color:#3a5c00;border:1px solid rgba(200,245,90,.35)}
+.dt-capture{background:rgba(90,145,245,.1);color:#3a5cd4;border:1px solid rgba(90,145,245,.22)}
+.doc-name{font-family:'DM Mono',monospace;font-size:11.5px;font-weight:500;color:#1a1a1a;line-height:1.45;margin-bottom:12px}
+.doc-btn{display:inline-flex;align-items:center;gap:6px;font-family:'DM Mono',monospace;font-size:11px;font-weight:500;color:#111;background:rgba(200,245,90,.18);border:1px solid rgba(200,245,90,.45);padding:6px 12px;border-radius:2px;letter-spacing:.05em;text-transform:uppercase;transition:all .2s;text-decoration:none}
+.doc-btn:hover{background:#c8f55a;color:#111;border-color:#c8f55a}
+.doc-btn-disabled{opacity:.38;cursor:not-allowed;pointer-events:none;background:#eee;border-color:#ddd;color:#999}
+
+/* REVEAL */
+.reveal{opacity:0;transform:translateY(28px);transition:opacity .7s ease,transform .7s ease}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+  nav{padding:14px 20px}
+  .nav-links>a:not(.nav-resumo){display:none}
+  #hero{grid-template-columns:1fr;min-height:auto}
+  #hero::after{display:none}
+  .hero-left{padding:90px 24px 40px}
+  .hero-right{display:none}
+  .hero-stats{gap:20px}
+  section{padding:60px 24px}
+  #about{padding:60px 24px}
+  .about-inner{grid-template-columns:1fr;gap:28px}
+  .case-card{grid-template-columns:1fr;gap:20px;padding:24px}
+  .skills-grid{grid-template-columns:1fr}
+  .ai-banner{grid-template-columns:1fr;text-align:center;padding:24px}
+  #certifications{padding:60px 24px}
+  .cert-grid{grid-template-columns:repeat(2,1fr)}
+  #contact{padding:80px 24px}
+  .form-row{grid-template-columns:1fr}
+  footer{padding:20px 24px;justify-content:center;text-align:center}
+  .dir-panel{max-height:93vh;border-radius:16px 16px 0 0}
+  .dir-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:480px){
+  .dir-grid{grid-template-columns:1fr}
+  .hero-stats{gap:16px}
+  .skills-legend{flex-direction:column;gap:12px}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">VEM</div>
+  <div class="nav-links">
+    <a href="#projects"><span class="es">Proyectos</span><span class="en">Projects</span></a>
+    <a href="#skills"><span class="es">Habilidades</span><span class="en">Skills</span></a>
+    <a href="#experience"><span class="es">Experiencia</span><span class="en">Experience</span></a>
+    <a href="#contact"><span class="es">Contacto</span><span class="en">Contact</span></a>
+    <a href="#" class="nav-resumo"><span class="es">↓ Resumen</span><span class="en">↓ Resume</span></a>
+    <div class="lang-toggle">
+      <button class="lang-btn active" onclick="setLang('es')">ES</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero" style="max-width:100%;padding:0;">
+  <div class="hero-left reveal">
+    <div class="hero-eyebrow">
+      <span class="es">Gestión de Proyectos · Operaciones · 20+ años</span>
+      <span class="en">Project Management · Operations · 20+ years</span>
+    </div>
+    <h1 class="hero-name">Verónica<span>Mlinarevic</span></h1>
+    <div class="hero-message">
+      <p class="es">Uso IA y automatización para <strong>eliminar el trabajo repetitivo</strong> — y dedicarme al 100% a lo que ninguna herramienta puede reemplazar: liderar equipos, tomar decisiones y ejecutar proyectos complejos.</p>
+      <p class="en">I use AI and automation to <strong>eliminate repetitive work</strong> — so I can focus 100% on what no tool can replace: leading teams, making decisions, and executing complex projects end-to-end.</p>
+      <div class="ai-note">⚡ <span class="es">La IA acelera mis tareas. Yo gestiono los resultados.</span><span class="en">AI speeds up my tasks. I manage the outcomes.</span></div>
+    </div>
+    <div class="hero-cta">
+      <a href="#contact" class="btn-primary"><span class="es">Trabajemos juntos →</span><span class="en">Let's work together →</span></a>
+      <a href="#projects" class="btn-ghost"><span class="es">Ver proyectos</span><span class="en">View projects</span></a>
+    </div>
+    <div class="hero-stats">
+      <div><div class="stat-num">20+</div><div class="stat-label es">Años exp.</div><div class="stat-label en">Yrs exp.</div></div>
+      <div><div class="stat-num">54</div><div class="stat-label es">Sitios ONU</div><div class="stat-label en">UN sites</div></div>
+      <div><div class="stat-num">150%</div><div class="stat-label es">Crecimiento cartera</div><div class="stat-label en">Portfolio growth</div></div>
+      <div><div class="stat-num">5+</div><div class="stat-label es">Países</div><div class="stat-label en">Countries</div></div>
+    </div>
+  </div>
+  <div class="hero-right reveal">
+    <div class="photo-frame">
+      <div class="photo-inner" id="photo-drop" onclick="document.getElementById('photo-input').click()">
+        <input type="file" id="photo-input" accept="image/*" onchange="loadPhoto(this)" style="display:none">
+        <div class="photo-placeholder-icon">◉</div>
+        <div class="photo-placeholder-text es">+ Subir foto</div>
+        <div class="photo-placeholder-text en">+ Upload photo</div>
+      </div>
+      <div class="location-badge">📍 Mendoza, AR · Remote</div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<div id="about">
+  <div class="about-inner">
+    <div class="about-big reveal">PM<br>OPS<br>LEAD</div>
+    <div class="reveal">
+      <p class="about-text es"><strong>Operations Leader con +20 años</strong> gestionando proyectos de tecnología, telecomunicaciones y transformación digital. Pionera en sistemas cloud en el interior de Argentina. Equipos en África y Asia.</p>
+      <p class="about-text en"><strong>Operations Leader with 20+ years</strong> managing technology, telecom, and digital transformation projects. Pioneered cloud implementations in the Argentine interior. Teams across Africa and Asia.</p>
+      <div class="ai-box">
+        <p class="es">Incorporo IA como <strong>ventaja operativa</strong>: las tareas repetitivas las resuelvo más rápido con herramientas inteligentes — para estar completamente presente donde realmente importa: gestión estratégica, personas y decisiones de alto impacto. <strong>La IA no me reemplaza. Me potencia.</strong></p>
+        <p class="en">I incorporate AI as an <strong>operational advantage</strong>: repetitive tasks get handled faster with smart tools — so I can be fully present where it actually matters: strategic management, people, and high-impact decisions. <strong>AI doesn't replace me. It amplifies me.</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- CASE STUDIES -->
+<section id="projects" style="max-width:1200px;">
+  <div class="section-label reveal">
+    <span class="section-label-text es">Casos de éxito</span><span class="section-label-text en">Case Studies</span>
+    <div class="section-label-line"></div><span class="section-num">01</span>
+  </div>
+  <h2 class="section-title reveal"><span class="es">Proyectos clave</span><span class="en">Key projects</span></h2>
+  <p class="section-sub reveal"><span class="es">Resultados concretos sobre liderazgo, criterio y ejecución de punta a punta.</span><span class="en">Concrete results built on leadership, judgment, and end-to-end execution.</span></p>
+  <div class="case-grid">
+    <!-- CASE 1 -->
+    <div class="case-card reveal">
+      <div class="case-meta">
+        <div class="case-num">Project / 01</div>
+        <div class="case-org">OSEP</div>
+        <div class="case-period">2019 → Presente</div>
+        <label class="case-img-placeholder">
+          <input type="file" accept="image/*" onchange="loadCaseImg(this,'case1')" style="display:none">
+          <div id="case1-container" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:24px 0;">
+            <span style="font-size:24px;opacity:.3">⊕</span>
+            <span class="placeholder-text es">+ Subir captura</span><span class="placeholder-text en">+ Upload screenshot</span>
+          </div>
+        </label>
+      </div>
+      <div class="case-body">
+        <h3 class="case-title es">Sistema de Legajos Multipropósitos</h3>
+        <h3 class="case-title en">Multi-purpose Records System</h3>
+        <div class="case-role es">Project Manager TIC · OSEP</div>
+        <div class="case-role en">ICT Project Manager · OSEP</div>
+        <div class="case-ai-note"><span class="es">⚡ Automaticé la documentación para enfocarme en gestión del cambio</span><span class="en">⚡ Automated documentation to focus fully on change management</span></div>
+        <p class="case-desc es">Implementación pionera de sistema cloud en el interior de Argentina. Modernización de procesos administrativos con metodologías ágiles en organización pública de gran escala.</p>
+        <p class="case-desc en">Pioneering cloud implementation in the Argentine interior. Administrative process modernization using agile methodologies in a large-scale public organization.</p>
+        <ul class="case-achievements">
+          <li class="es">Primera implementación de este tipo en el interior del país</li><li class="en">First implementation of its kind in the Argentine interior</li>
+          <li class="es">Migración cloud con continuidad operativa total</li><li class="en">Full cloud migration with zero operational disruption</li>
+          <li class="es">Análisis funcional con múltiples stakeholders</li><li class="en">Functional analysis across multiple stakeholders</li>
+        </ul>
+        <div class="case-tags"><span class="case-tag ct-lime">Cloud Migration</span><span class="case-tag ct-lime">Agile</span><span class="case-tag ct-muted">Sector Público</span></div>
+      </div>
+    </div>
+    <!-- CASE 2 -->
+    <div class="case-card reveal">
+      <div class="case-meta">
+        <div class="case-num">Project / 02</div>
+        <div class="case-org" style="color:var(--teal)">ONU · EMC</div>
+        <div class="case-period">2008 → 2009</div>
+        <label class="case-img-placeholder">
+          <input type="file" accept="image/*" onchange="loadCaseImg(this,'case2')" style="display:none">
+          <div id="case2-container" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:24px 0;">
+            <span style="font-size:24px;opacity:.3">⊕</span>
+            <span class="placeholder-text es">+ Subir captura</span><span class="placeholder-text en">+ Upload screenshot</span>
+          </div>
+        </label>
+      </div>
+      <div class="case-body">
+        <h3 class="case-title es">54 Instalaciones Satelitales · ONU</h3>
+        <h3 class="case-title en">54 Satellite Installations · UN</h3>
+        <div class="case-role es">Líder de Proyectos · Emerging Market Communications</div>
+        <div class="case-role en">Project Lead · Emerging Market Communications</div>
+        <div class="case-ai-note" style="border-color:rgba(90,245,200,.2);color:var(--teal)"><span class="es">⚡ Reportes sincronizados con equipos en 3 zonas horarias</span><span class="en">⚡ Status reports synchronized across 3 time zones</span></div>
+        <p class="case-desc es">Proyecto de ingeniería de alta complejidad para Naciones Unidas con equipos multiculturales internacionales.</p>
+        <p class="case-desc en">High-complexity engineering project for the UN with internationally distributed multicultural teams.</p>
+        <ul class="case-achievements">
+          <li class="es">Entrega en tiempo y forma de los 54 sitios</li><li class="en">On-time delivery of all 54 sites</li>
+          <li class="es">100% de parámetros de calidad ONU cumplidos</li><li class="en">100% of UN quality parameters met</li>
+          <li class="es">Coordinación simultánea en África y Asia</li><li class="en">Simultaneous coordination across Africa and Asia</li>
+        </ul>
+        <div class="case-tags"><span class="case-tag ct-teal">Internacional</span><span class="case-tag ct-teal">Calidad</span><span class="case-tag ct-muted">Gestión de Crisis</span></div>
+      </div>
+    </div>
+    <!-- CASE 3 -->
+    <div class="case-card reveal">
+      <div class="case-meta">
+        <div class="case-num">Project / 03</div>
+        <div class="case-org" style="color:var(--red)">Vizion Telecom</div>
+        <div class="case-period">2009 → 2020</div>
+        <label class="case-img-placeholder">
+          <input type="file" accept="image/*" onchange="loadCaseImg(this,'case3')" style="display:none">
+          <div id="case3-container" style="display:flex;flex-direction:column;align-items:center;gap:8px;padding:24px 0;">
+            <span style="font-size:24px;opacity:.3">⊕</span>
+            <span class="placeholder-text es">+ Subir captura</span><span class="placeholder-text en">+ Upload screenshot</span>
+          </div>
+        </label>
+      </div>
+      <div class="case-body">
+        <h3 class="case-title es">Transformación Operativa · 10 años</h3>
+        <h3 class="case-title en">Operational Transformation · 10 years</h3>
+        <div class="case-role es">Jefa de Operaciones Generales · Vizion Telecomunicaciones</div>
+        <div class="case-role en">Head of General Operations · Vizion Telecomunicaciones</div>
+        <div class="case-ai-note" style="border-color:rgba(245,90,122,.2);color:var(--red)"><span class="es">⚡ Automaticé reportes CAPEX/OPEX para análisis estratégico</span><span class="en">⚡ Automated CAPEX/OPEX reporting for strategic analysis</span></div>
+        <p class="case-desc es">Liderazgo integral de operaciones durante 10 años: planificación, recursos, análisis financiero y estandarización nacional.</p>
+        <p class="case-desc en">Comprehensive operations leadership over 10 years: planning, resources, financial analysis, and nationwide standardization.</p>
+        <ul class="case-achievements">
+          <li class="es">Estandarización de procedimientos operativos nacionales</li><li class="en">Nationwide operational procedure standardization</li>
+          <li class="es">Programa H&S electromecánico y en altura</li><li class="en">H&S program for electromechanical and height-based tasks</li>
+          <li class="es">Consolidación CAPEX/OPEX y análisis de viabilidad</li><li class="en">CAPEX/OPEX consolidation and feasibility analysis</li>
+        </ul>
+        <div class="case-tags"><span class="case-tag" style="background:rgba(245,90,122,.07);border:1px solid rgba(245,90,122,.2);color:var(--red)">10 años</span><span class="case-tag ct-muted">CAPEX/OPEX</span><span class="case-tag ct-muted">H&S</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-label reveal">
+    <span class="section-label-text es">Stack & habilidades</span><span class="section-label-text en">Stack & skills</span>
+    <div class="section-label-line"></div><span class="section-num">02</span>
+  </div>
+  <h2 class="section-title reveal"><span class="es">Cómo trabajo</span><span class="en">How I work</span></h2>
+
+  <!-- LEGEND -->
+  <div class="skills-legend reveal">
+    <div class="legend-item"><span class="legend-dot-ev"></span><span class="es">Habilidad con evidencia documentada — hacé click para ver</span><span class="en">Skill with documented evidence — click to view</span></div>
+    <div class="legend-item"><span class="legend-dot-plain"></span><span class="es">Habilidad declarada</span><span class="en">Declared skill</span></div>
+  </div>
+
+  <div class="skills-grid">
+    <div class="skill-group reveal">
+      <div class="skill-group-label es">Gestión de Proyectos</div>
+      <div class="skill-group-label en">Project Management</div>
+      <div class="tag-cloud">
+        <span class="stag stag-ev" onclick="openDir('pm-standards')">Estándares Internacionales PM<span class="tag-chev">›</span></span>
+        <span class="stag stag-ev" onclick="openDir('agile')">Filosofía Agile<span class="tag-chev">›</span></span>
+        <span class="stag stag-ev" onclick="openDir('scrum')">Scrum / Kanban<span class="tag-chev">›</span></span>
+        <span class="stag stag-ev" onclick="openDir('analisis-funcional')">Análisis Funcional<span class="tag-chev">›</span></span>
+        <span class="stag stag-ev" onclick="openDir('mejora-continua')">Mejora Continua<span class="tag-chev">›</span></span>
+        <span class="stag stag-ev" onclick="openDir('sgi')">SGI Calidad<span class="tag-chev">›</span></span>
+        <span class="stag stag-ev" onclick="openDir('iso')">Auditoría ISO 9001·14001·45001<span class="tag-chev">›</span></span>
+        <span class="stag stag-plain">PMI (en proceso)</span>
+        <span class="stag stag-plain">Prince2</span>
+        <span class="stag stag-plain">Six Sigma / Lean</span>
+        <span class="stag stag-plain">Cadena Crítica</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-label es">Herramientas & Automatización</div>
+      <div class="skill-group-label en">Tools & Automation</div>
+      <div class="tag-cloud">
+        <span class="stag stag-ev" onclick="openDir('google-workspace')">Google Workspace<span class="tag-chev">›</span></span>
+        <span class="stag stag-ev" onclick="openDir('n8n')">Automatizaciones N8N<span class="tag-chev">›</span></span>
+        <span class="stag stag-ev" onclick="openDir('prompt')">Ingeniería de Prompt<span class="tag-chev">›</span></span>
+        <span class="stag stag-ev" onclick="openDir('sql')">SQL / Supabase<span class="tag-chev">›</span></span>
+        <span class="stag stag-ev" onclick="openDir('csv-json')">CSV / JSON<span class="tag-chev">›</span></span>
+        <span class="stag stag-plain">HTML / XML / JS</span>
+        <span class="stag stag-plain">VS Code / Vibe</span>
+        <span class="stag stag-plain">Jira · Confluence</span>
+        <span class="stag stag-plain">Trello · ClickUp</span>
+        <span class="stag stag-plain">Miro</span>
+      </div>
+    </div>
+    <div class="skill-group reveal">
+      <div class="skill-group-label es">Liderazgo & Operaciones</div>
+      <div class="skill-group-label en">Leadership & Operations</div>
+      <div class="tag-cloud">
+        <span class="stag stag-plain">Equipos multiculturales</span>
+        <span class="stag stag-plain">Gestión de stakeholders</span>
+        <span class="stag stag-plain">CAPEX / OPEX</span>
+        <span class="stag stag-plain">Negociación estratégica</span>
+        <span class="stag stag-plain">Análisis de viabilidad</span>
+        <span class="stag stag-plain">Gestión de crisis</span>
+        <span class="stag stag-plain">Liderazgo bajo presión</span>
+        <span class="stag stag-plain">Agente de Cambio</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ai-banner reveal">
+    <div class="ai-banner-icon">⚡</div>
+    <div>
+      <div class="ai-banner-title"><span class="es">La IA agiliza las tareas. <span>Yo gestiono los resultados.</span></span><span class="en">AI speeds up the tasks. <span>I manage the outcomes.</span></span></div>
+      <p class="ai-banner-desc es">Uso herramientas de IA y automatización para <strong>resolver lo repetitivo más rápido</strong> — y tener toda mi energía disponible para lo que sigue siendo exclusivamente humano: <strong>liderar equipos, gestionar stakeholders y tomar decisiones estratégicas</strong> bajo presión.</p>
+      <p class="ai-banner-desc en">I use AI and automation tools to <strong>handle repetitive work faster</strong> — keeping my full energy available for what remains exclusively human: <strong>leading teams, managing stakeholders, and making strategic decisions</strong> under pressure.</p>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<div id="certifications">
+  <div class="cert-inner">
+    <div class="section-label reveal">
+      <span class="section-label-text es">Formación & certificaciones</span><span class="section-label-text en">Education & certifications</span>
+      <div class="section-label-line"></div><span class="section-num">03</span>
+    </div>
+    <h2 class="section-title reveal"><span class="es">Credenciales</span><span class="en">Credentials</span></h2>
+    <div class="cert-grid">
+      <div class="cert-card reveal" onclick="document.getElementById('cu0').click()">
+        <input type="file" accept="image/*,application/pdf" id="cu0" onchange="loadCert(this,0)" style="display:none">
+        <div class="cert-icon">🎓</div>
+        <div class="cert-name es">Analista Experto en GP · Scrum Master</div><div class="cert-name en">Expert Analyst in PM · Scrum Master</div>
+        <div class="cert-issuer">UTN – Buenos Aires</div>
+        <span class="cert-badge">Finalizado</span>
+        <span class="cert-upload-label es">+ Subir certificado</span><span class="cert-upload-label en">+ Upload certificate</span>
+        <div class="cert-preview" id="cert-preview-0"></div>
+      </div>
+      <div class="cert-card reveal" onclick="document.getElementById('cu1').click()">
+        <input type="file" accept="image/*,application/pdf" id="cu1" onchange="loadCert(this,1)" style="display:none">
+        <div class="cert-icon">📋</div>
+        <div class="cert-name es">Auditora ISO 9000·14000·45000</div><div class="cert-name en">ISO 9000·14000·45000 Auditor</div>
+        <div class="cert-issuer">UTN – Mendoza</div>
+        <span class="cert-badge">Certificado</span>
+        <span class="cert-upload-label es">+ Subir certificado</span><span class="cert-upload-label en">+ Upload certificate</span>
+        <div class="cert-preview" id="cert-preview-1"></div>
+      </div>
+      <div class="cert-card reveal" onclick="document.getElementById('cu2').click()">
+        <input type="file" accept="image/*,application/pdf" id="cu2" onchange="loadCert(this,2)" style="display:none">
+        <div class="cert-icon">⚡</div>
+        <div class="cert-name es">Calidad y Mejora de Procesos</div><div class="cert-name en">Quality Management & Process Improvement</div>
+        <div class="cert-issuer">UTN – Resistencia</div>
+        <span class="cert-badge">Finalizado</span>
+        <span class="cert-upload-label es">+ Subir certificado</span><span class="cert-upload-label en">+ Upload certificate</span>
+        <div class="cert-preview" id="cert-preview-2"></div>
+      </div>
+      <div class="cert-card reveal" onclick="document.getElementById('cu3').click()">
+        <input type="file" accept="image/*,application/pdf" id="cu3" onchange="loadCert(this,3)" style="display:none">
+        <div class="cert-icon">🚀</div>
+        <div class="cert-name es">Certificación PMI</div><div class="cert-name en">PMI Certification</div>
+        <div class="cert-issuer">PMI International</div>
+        <span class="cert-badge" style="background:rgba(200,245,90,.15);border-color:rgba(200,245,90,.4);color:#fff;">En proceso</span>
+        <span class="cert-upload-label es">+ Subir certificado</span><span class="cert-upload-label en">+ Upload certificate</span>
+        <div class="cert-preview" id="cert-preview-3"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="max-width:1200px;">
+  <div class="section-label reveal">
+    <span class="section-label-text es">Trayectoria</span><span class="section-label-text en">Experience</span>
+    <div class="section-label-line"></div><span class="section-num">04</span>
+  </div>
+  <h2 class="section-title reveal"><span class="es">20 años de impacto</span><span class="en">20 years of impact</span></h2>
+  <div class="timeline">
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div class="timeline-title es">Project Manager – TIC</div><div class="timeline-title en">ICT Project Manager</div>
+        <span class="timeline-period es">May 2019 · Presente</span><span class="timeline-period en">May 2019 · Present</span>
+      </div>
+      <div class="timeline-company">Obra Social de Empleados Públicos (OSEP)</div>
+      <p class="timeline-desc es">Modernización de procesos e implementación de metodologías ágiles.</p><p class="timeline-desc en">Process modernization and agile methodology implementation.</p>
+      <div class="timeline-ach es">Sistema de Legajos Multipropósitos · Migración cloud · Implementación pionera en el interior del país</div>
+      <div class="timeline-ach en">Multi-purpose Records System · Cloud migration · Pioneering implementation in the Argentine interior</div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot" style="background:var(--teal)"></div>
+      <div class="timeline-header">
+        <div class="timeline-title es">Jefa de Operaciones Generales</div><div class="timeline-title en">Head of General Operations</div>
+        <span class="timeline-period">Oct 2009 · Mar 2020</span>
+      </div>
+      <div class="timeline-company">Vizion Telecomunicaciones SA</div>
+      <p class="timeline-desc es">Conducción, planificación y gestión de recursos. CAPEX/OPEX.</p><p class="timeline-desc en">Leadership, planning, and resource management. CAPEX/OPEX.</p>
+      <div class="timeline-ach es">Estandarización nacional · Programa H&S electromecánico y en altura</div>
+      <div class="timeline-ach en">Nationwide standardization · H&S Program for electromechanical and height-based tasks</div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot" style="background:var(--red)"></div>
+      <div class="timeline-header">
+        <div class="timeline-title es">Líder de Proyectos e Infraestructura</div><div class="timeline-title en">Project & Infrastructure Lead</div>
+        <span class="timeline-period">Sep 2008 · Sep 2009</span>
+      </div>
+      <div class="timeline-company">Emerging Market Communications</div>
+      <p class="timeline-desc es">Proyectos de ingeniería para corporaciones internacionales.</p><p class="timeline-desc en">Engineering projects for international corporations.</p>
+      <div class="timeline-ach es">54 instalaciones satelitales ONU · 100% parámetros de calidad</div>
+      <div class="timeline-ach en">54 UN satellite installations · 100% quality parameters met</div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot"></div>
+      <div class="timeline-header">
+        <div class="timeline-title es">Jefa de Operaciones Globales</div><div class="timeline-title en">Head of Global Operations</div>
+        <span class="timeline-period">Ene 2007 · Sep 2008</span>
+      </div>
+      <div class="timeline-company">Emerging Market Communications</div>
+      <p class="timeline-desc es">Equipos de campo en África y Asia. Facilitadora en crisis.</p><p class="timeline-desc en">Field teams across Africa and Asia. Crisis facilitator.</p>
+      <div class="timeline-ach es">Coordinación multicultural sincronizada · Estandarización internacional</div>
+      <div class="timeline-ach en">Synchronized multicultural coordination · International standardization</div>
+    </div>
+    <div class="timeline-item reveal">
+      <div class="timeline-dot" style="background:var(--teal)"></div>
+      <div class="timeline-header">
+        <div class="timeline-title es">Gerencia de Negocios y Operaciones</div><div class="timeline-title en">Business & Operations Manager</div>
+        <span class="timeline-period">Oct 2004 · Mar 2007</span>
+      </div>
+      <div class="timeline-company">Comytel Telecomunicaciones SA</div>
+      <p class="timeline-desc es">Departamento de Negocios y PM Operaciones, Litoral y Centro.</p><p class="timeline-desc en">Business Department and Operations PM, Littoral and Central regions.</p>
+      <div class="timeline-ach es">+150% cartera de clientes en dos años · Certificación técnica del personal</div>
+      <div class="timeline-ach en">+150% client portfolio growth in two years · Staff technical certification</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<div id="contact">
+  <div class="contact-inner">
+    <h2 class="contact-title reveal"><span class="es">Trabajemos<br><span style="color:var(--lime)">juntos.</span></span><span class="en">Let's work<br><span style="color:var(--lime)">together.</span></span></h2>
+    <p class="contact-sub reveal"><span class="es">Disponible para proyectos remotos internacionales. Zona horaria MST/ART flexible.</span><span class="en">Available for international remote projects. MST/ART timezone flexible.</span></p>
+    <form class="contact-form reveal" onsubmit="handleSubmit(event)">
+      <div class="form-row">
+        <div class="form-field"><label><span class="es">Nombre</span><span class="en">Name</span></label><input type="text" placeholder="Jane Smith" required></div>
+        <div class="form-field"><label>Email</label><input type="email" placeholder="jane@company.com" required></div>
+      </div>
+      <div class="form-field"><label><span class="es">Empresa / Rol</span><span class="en">Company / Role</span></label><input type="text" placeholder="Acme Corp – Operations Lead"></div>
+      <div class="form-field"><label><span class="es">Mensaje</span><span class="en">Message</span></label><textarea placeholder="..."></textarea></div>
+      <button type="submit" class="form-submit"><span class="es">Enviar mensaje</span><span class="en">Send message</span></button>
+    </form>
+    <div class="contact-links reveal">
+      <a href="mailto:veronica.mlinarevic@gmail.com" class="contact-link">
+        <svg fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>Email
+      </a>
+      <a href="https://wa.me/5492616799685" target="_blank" class="contact-link">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a4.5 4.5 0 00-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 2C6.477 2 2 6.477 2 12c0 1.99.576 3.842 1.569 5.407L2 22l4.674-1.549A9.956 9.956 0 0012 22c5.523 0 10-4.477 10-10S17.523 2 12 2zm0 18a7.97 7.97 0 01-4.054-1.107l-.291-.173-3.019 1 .971-2.943-.19-.302A7.96 7.96 0 014 12c0-4.418 3.582-8 8-8s8 3.582 8 8-3.582 8-8 8z"/></svg>WhatsApp
+      </a>
+      <a href="https://www.linkedin.com/in/veronica-e-mlinarevic-11669599/" target="_blank" class="contact-link">
+        <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Verónica E. Mlinarevic</div>
+  <div class="footer-claude">⚡
+    <span class="es">Portfolio construido en colaboración con <a href="https://claude.ai" target="_blank">Claude — Anthropic</a></span>
+    <span class="en">Portfolio built in collaboration with <a href="https://claude.ai" target="_blank">Claude — Anthropic</a></span>
+  </div>
+  <div class="footer-copy">© 2025 · Mendoza, AR · Remote-first</div>
+</footer>
+
+<!-- EVIDENCE DIRECTORY -->
+<div class="dir-overlay" id="dirOverlay" onclick="handleOverlayClick(event)">
+  <div class="dir-panel" id="dirPanel">
+    <div class="dir-header">
+      <div class="dir-header-left">
+        <div class="dir-skill-label" id="dirSkillLabel">Evidencia documentada</div>
+        <div class="dir-title" id="dirTitle">Documentos</div>
+      </div>
+      <button class="dir-close" onclick="closeDir()">✕</button>
+    </div>
+    <div class="dir-body">
+      <div class="dir-intro" id="dirIntro"></div>
+      <div class="dir-grid" id="dirGrid"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+const DIR = {
+  'pm-standards':{
+    label_es:'Gestión de Proyectos',label_en:'Project Management',
+    title_es:'Estándares Internacionales PM',title_en:'International PM Standards',
+    intro_es:'Certificaciones y documentación académica que respaldan el dominio de estándares internacionales de gestión de proyectos.',
+    intro_en:'Certifications and academic documentation supporting mastery of international project management standards.',
+    docs:[
+      {name_es:'Certificado — Analista Experto en Gestión de Proyectos',name_en:'Certificate — Expert Analyst in Project Management',type:'cert',link:'#'},
+      {name_es:'Programa del Curso — Contenido y competencias desarrolladas',name_en:'Course Program — Content and developed competencies',type:'work',link:'#'}
+    ]
+  },
+  'agile':{
+    label_es:'Metodologías Ágiles',label_en:'Agile Methodologies',
+    title_es:'Filosofía Agile',title_en:'Agile Philosophy',
+    intro_es:'Certificación y materiales de aplicación práctica de metodologías ágiles en proyectos reales.',
+    intro_en:'Certification and practical application materials of agile methodologies in real projects.',
+    docs:[
+      {name_es:'Certificado — Scrum Master · Gestión Agile de Proyectos',name_en:'Certificate — Scrum Master · Agile Project Management',type:'cert',link:'#'},
+      {name_es:'Programa del Curso — Filosofía y marcos de trabajo Agile',name_en:'Course Program — Agile philosophy and frameworks',type:'work',link:'#'}
+    ]
+  },
+  'scrum':{
+    label_es:'Metodologías Ágiles',label_en:'Agile Methodologies',
+    title_es:'Scrum / Kanban',title_en:'Scrum / Kanban',
+    intro_es:'Certificación Scrum Master con aplicación en proyectos de transformación digital.',
+    intro_en:'Scrum Master certification with application in digital transformation projects.',
+    docs:[
+      {name_es:'Certificado — Scrum Master UTN Buenos Aires',name_en:'Certificate — Scrum Master UTN Buenos Aires',type:'cert',link:'#'},
+      {name_es:'Certificado — Analista Experto en GP · Scrum Master',name_en:'Certificate — Expert Analyst in PM · Scrum Master',type:'cert',link:'#'}
+    ]
+  },
+  'analisis-funcional':{
+    label_es:'Gestión de Proyectos',label_en:'Project Management',
+    title_es:'Análisis Funcional',title_en:'Functional Analysis',
+    intro_es:'Documentos de trabajo reales del proyecto OSEP — relevamiento, análisis y especificación de requerimientos.',
+    intro_en:'Real working documents from the OSEP project — requirements gathering, analysis and specification.',
+    docs:[
+      {name_es:'Relevamiento de Requerimientos — Sistema de Legajos OSEP',name_en:'Requirements Gathering — OSEP Records System',type:'work',link:'#'},
+      {name_es:'Análisis Funcional — Diagrama de procesos AS-IS / TO-BE',name_en:'Functional Analysis — AS-IS / TO-BE process diagram',type:'work',link:'#'},
+      {name_es:'Especificación Funcional — Módulo de gestión de legajos',name_en:'Functional Specification — Records management module',type:'work',link:'#'}
+    ]
+  },
+  'mejora-continua':{
+    label_es:'Calidad',label_en:'Quality',
+    title_es:'Mejora Continua',title_en:'Continuous Improvement',
+    intro_es:'Certificación y documentación académica en gestión de calidad y mejora continua de procesos.',
+    intro_en:'Certification and academic documentation in quality management and continuous process improvement.',
+    docs:[
+      {name_es:'Certificado — Gestión de Calidad y Mejora de Procesos · UTN Resistencia',name_en:'Certificate — Quality Management & Process Improvement · UTN Resistencia',type:'cert',link:'#'},
+      {name_es:'Programa del Curso — Herramientas de mejora continua',name_en:'Course Program — Continuous improvement tools',type:'work',link:'#'}
+    ]
+  },
+  'sgi':{
+    label_es:'Calidad',label_en:'Quality',
+    title_es:'SGI Calidad',title_en:'Quality IMS',
+    intro_es:'Documentación de implementación y gestión de Sistemas de Gestión Integrada.',
+    intro_en:'Implementation and management documentation for Integrated Management Systems.',
+    docs:[
+      {name_es:'Certificado — Auditora Sistemas de Gestión Integrada · UTN',name_en:'Certificate — Integrated Management Systems Auditor · UTN',type:'cert',link:'#'}
+    ]
+  },
+  'iso':{
+    label_es:'Auditoría',label_en:'Auditing',
+    title_es:'Auditoría ISO 9001·14001·45001',title_en:'ISO 9001·14001·45001 Auditor',
+    intro_es:'Certificación oficial de auditora para los tres estándares ISO más relevantes en organizaciones.',
+    intro_en:'Official auditor certification for the three most relevant ISO standards in organizations.',
+    docs:[
+      {name_es:'Certificado — Auditora ISO 9000·14000·45000 · UTN Mendoza',name_en:'Certificate — ISO 9000·14000·45000 Auditor · UTN Mendoza',type:'cert',link:'#'}
+    ]
+  },
+  'google-workspace':{
+    label_es:'Herramientas',label_en:'Tools',
+    title_es:'Google Workspace',title_en:'Google Workspace',
+    intro_es:'Trabajos reales desarrollados con Google Workspace — Sheets con App Script, documentos estructurados y automatizaciones.',
+    intro_en:'Real work developed with Google Workspace — Sheets with App Script, structured documents and automations.',
+    docs:[
+      {name_es:'Relevamiento UX — Google Sheets + App Script · Análisis de datos',name_en:'UX Research — Google Sheets + App Script · Data analysis',type:'work',link:'#'},
+      {name_es:'Dashboard de seguimiento — Sheets estructurado con fórmulas avanzadas',name_en:'Tracking dashboard — Structured Sheets with advanced formulas',type:'work',link:'#'}
+    ]
+  },
+  'n8n':{
+    label_es:'Automatización',label_en:'Automation',
+    title_es:'Automatizaciones N8N',title_en:'N8N Automation',
+    intro_es:'Capturas de flujos de automatización reales construidos para optimizar procesos administrativos.',
+    intro_en:'Screenshots of real automation flows built to optimize administrative processes.',
+    docs:[
+      {name_es:'Flujo N8N — Automatización de proceso administrativo · Escenario completo',name_en:'N8N Flow — Administrative process automation · Full scenario',type:'capture',link:'#'}
+    ]
+  },
+  'prompt':{
+    label_es:'IA Aplicada',label_en:'Applied AI',
+    title_es:'Ingeniería de Prompt',title_en:'Prompt Engineering',
+    intro_es:'Evidencia de uso estratégico de IA en contexto profesional real. Este portfolio fue construido íntegramente con IA como herramienta central.',
+    intro_en:'Evidence of strategic AI use in real professional context. This entire portfolio was built using AI as a central tool.',
+    docs:[
+      {name_es:'Caso de uso — Estrategia de presentación profesional con Claude · Conversación documentada',name_en:'Use case — Professional presentation strategy with Claude · Documented conversation',type:'capture',link:'#'},
+      {name_es:'Caso de uso — Posicionamiento de marca personal · Prompts y resultados',name_en:'Use case — Personal brand positioning · Prompts and results',type:'capture',link:'#'}
+    ]
+  },
+  'sql':{
+    label_es:'Herramientas',label_en:'Tools',
+    title_es:'SQL / Supabase',title_en:'SQL / Supabase',
+    intro_es:'Documentos de trabajo con consultas y estructuras de base de datos aplicadas a proyectos reales.',
+    intro_en:'Working documents with queries and database structures applied to real projects.',
+    docs:[
+      {name_es:'Documento de trabajo — Consultas SQL · Análisis de datos operativos',name_en:'Working document — SQL queries · Operational data analysis',type:'work',link:'#'}
+    ]
+  },
+  'csv-json':{
+    label_es:'Herramientas',label_en:'Tools',
+    title_es:'CSV / JSON',title_en:'CSV / JSON',
+    intro_es:'Ejemplos de estructuración y procesamiento de datos para proyectos de automatización.',
+    intro_en:'Examples of data structuring and processing for automation projects.',
+    docs:[
+      {name_es:'Documento de trabajo — Estructuración CSV · Integración con N8N',name_en:'Working document — CSV structuring · N8N integration',type:'work',link:'#'}
+    ]
+  }
+};
+
+const TLABELS={cert:{es:'Certificado',en:'Certificate',cls:'dt-cert'},work:{es:'Doc. de trabajo',en:'Working doc',cls:'dt-work'},capture:{es:'Captura',en:'Screenshot',cls:'dt-capture'}};
+const TICONS={cert:'🎓',work:'📄',capture:'📸'};
+
+function getLang(){return document.documentElement.getAttribute('data-lang')||'es';}
+
+function openDir(key){
+  const d=DIR[key]; if(!d)return;
+  const l=getLang();
+  document.getElementById('dirSkillLabel').textContent=d['label_'+l];
+  document.getElementById('dirTitle').textContent=d['title_'+l];
+  document.getElementById('dirIntro').textContent=d['intro_'+l];
+  const grid=document.getElementById('dirGrid');
+  grid.innerHTML='';
+  d.docs.forEach(doc=>{
+    const t=TLABELS[doc.type];
+    const card=document.createElement('div');
+    card.className='doc-card';
+    const isPH=doc.link==='#';
+    card.innerHTML=`
+      <div class="doc-preview">
+        <div class="doc-preview-placeholder">
+          <span class="doc-preview-icon">${TICONS[doc.type]}</span>
+          <span class="doc-preview-type">${doc.type.toUpperCase()}</span>
+        </div>
+      </div>
+      <div class="doc-info">
+        <span class="doc-type-badge ${t.cls}">${t[l]}</span>
+        <div class="doc-name">${doc['name_'+l]}</div>
+        <a href="${doc.link}" ${!isPH?'target="_blank"':''} class="doc-btn ${isPH?'doc-btn-disabled':''}">
+          ${l==='es'?'Ver documento ↗':'View document ↗'}
+        </a>
+      </div>`;
+    grid.appendChild(card);
+  });
+  const ov=document.getElementById('dirOverlay');
+  ov.style.display='flex';
+  requestAnimationFrame(()=>ov.classList.add('open'));
+  document.querySelectorAll('.stag-ev').forEach(t=>{
+    if(t.getAttribute('onclick')===`openDir('${key}')`) t.classList.add('open');
+  });
+}
+
+function closeDir(){
+  const ov=document.getElementById('dirOverlay');
+  ov.classList.remove('open');
+  setTimeout(()=>{ov.style.display='none';},400);
+  document.querySelectorAll('.stag-ev').forEach(t=>t.classList.remove('open'));
+}
+
+function handleOverlayClick(e){if(e.target===document.getElementById('dirOverlay'))closeDir();}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeDir();});
+
+function setLang(l){
+  document.documentElement.setAttribute('data-lang',l);
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.remove('active'));
+  document.querySelector(`.lang-btn[onclick="setLang('${l}')"]`).classList.add('active');
+}
+function loadPhoto(input){
+  if(!input.files[0])return;
+  const r=new FileReader();
+  r.onload=e=>{document.getElementById('photo-drop').innerHTML=`<img src="${e.target.result}" alt="Verónica">`;};
+  r.readAsDataURL(input.files[0]);
+}
+function loadCaseImg(input,id){
+  if(!input.files[0])return;
+  const r=new FileReader();
+  r.onload=e=>{const c=document.getElementById(id+'-container');if(c)c.innerHTML=`<img src="${e.target.result}" style="width:100%;border-radius:3px;">`;};
+  r.readAsDataURL(input.files[0]);
+}
+function loadCert(input,i){
+  if(!input.files[0])return;
+  const r=new FileReader();
+  r.onload=e=>{
+    const p=document.getElementById('cert-preview-'+i);
+    p.innerHTML=`<img src="${e.target.result}"><button class="cert-preview-close" onclick="closeCert(event,${i})">✕</button>`;
+    p.style.display='block';
+  };
+  r.readAsDataURL(input.files[0]);
+}
+function closeCert(e,i){e.stopPropagation();document.getElementById('cert-preview-'+i).style.display='none';}
+
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible');});
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.reveal').forEach((el,i)=>{
+  el.style.transitionDelay=(i%4)*.07+'s';obs.observe(el);
+});
+
+function handleSubmit(e){
+  e.preventDefault();
+  const btn=e.target.querySelector('.form-submit');
+  btn.textContent='✓ Enviado!';btn.style.background='var(--teal)';
+  setTimeout(()=>{
+    btn.innerHTML='<span class="es">Enviar mensaje</span><span class="en">Send message</span>';
+    btn.style.background='var(--lime)';e.target.reset();
+  },3000);
+}
+</script>
+</body>
+</html>
